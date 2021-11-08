@@ -9,8 +9,56 @@
     <title>Practica CRUD</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">Practica CRUD</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="admin.html">Administracion</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main class="container">
+        <section>
+            <h1 class="display-3 mt-5 text-center">Administrar Productos</h1>
+            <hr>
+            <div class="mb-3">
+                <label for="codigo" class="form-label">Codigo</label>
+                <input type="text" class="form-control" id="codigo" placeholder="1234"
+                >
+                
+              </div>
+            <div class="mb-3">
+                <label for="producto" class="form-label">Producto</label>
+                <input type="text" class="form-control" id="producto" placeholder="Ingrese un producto">
+              </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Desripcion</label>
+              <textarea id="descripcion" rows="10" class="form-control" placeholder="agregue la descripcion de su producto"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="text" class="form-control" id="cantidad" placeholder="10">
+              </div>
+              <div class="mb-3">
+                <label for="url" class="form-label">URL</label>
+                <input type="text" class="form-control" id="url" placeholder="10">
+              </div>            
+              <button class="btn btn-primary" type="submit">Guardar</button>
+        </section>
+    </main>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/admin.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>
