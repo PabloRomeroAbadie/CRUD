@@ -9,8 +9,177 @@
     <title>Practica CRUD</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+              <a class="navbar-brand" href="index.html">CRUD</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="admin.html">Admin</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main class="container">
+      <h1 class="display-3 mt-5 text-center">Administrar Productos</h1>
+      <hr>
+        <section class=" bg-light ps-3">
+          <form id="formProducto">
+            <div class="mb-3">
+              <h2 class="pt-3">Cargar Productos</h2>
+              <hr>
+                <label for="codigo" class="form-label">Codigo</label>
+                <input type="text" class="form-control" id="codigo" placeholder="1234"
+                >
+                <div class="invalid-feedback">
+                  Debe ingresar al menos un caracter.
+                </div>
+                
+              </div>
+            <div class="mb-3">
+                <label for="producto" class="form-label">Producto</label>
+                <input type="text" class="form-control" id="producto" placeholder="Ingrese un producto">
+                <div class="invalid-feedback">
+                  Debe ingresar al menos un caracter.
+                </div>
+              </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Desripcion</label>
+              <textarea id="descripcion" rows="10" class="form-control" placeholder="agregue la descripcion de su producto"></textarea>
+              <div class="invalid-feedback">
+                Debe ingresar al menos un caracter.
+              </div>
+              </div>
+              <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="text" class="form-control" id="cantidad" placeholder="10">
+                <div class="invalid-feedback">
+                  Debe ingresar de uno a tres numeros.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="url" class="form-label">URL</label>
+                <input type="text" class="form-control" id="url" placeholder="10">
+                <div class="invalid-feedback">
+                  Ingreso una URL invalida.
+                </div>
+              </div>            
+              <button class="btn btn-primary" type="submit">Guardar</button>
+            </form>
+            <div class="my-4 alert alert-danger d-none" role="alert" id="msjAlerta">
+              Debe completar todos los datos
+            </div>
+        </section>
+
+        <section class="container mt-5">
+          <h2 class="display-3">Tabla de Productos</h2>
+          <hr>
+          <div>
+            <button class="btn btn-primary" type="submit">Nuevo</button>
+            <button class="btn btn-secondary" type="submit">Cargar datos de prueba</button>
+          </div>
+          <div class="mt-5 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col ">cod.</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">994</th>
+                  <td>Kakashi <br> Hatake (Anbu)</td>
+                  <td>Funko Figura Pop Naruto Shippuden <br>
+                  Kakashi Hatake (Anbu) (AAA Anime <br> Exclusive) </td>
+                  <td>1</td>
+                  <td></td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <button class="btn btn-danger">Editar</button>
+                    <button class="btn btn-warning">Borrar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </section>
+    </main>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/admin.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>
