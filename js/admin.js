@@ -9,6 +9,9 @@ let campoCantidad = document.querySelector("#cantidad");
 let campoUrl = document.querySelector("#url");
 let formularioProducto = document.querySelector("#formProducto");
 
+// lista de productos
+let listaProductos = [];
+
 
 campoCodigo.addEventListener("blur", () =>{ campoRequerido(campoCodigo)});
 campoProducto.addEventListener("blur", () =>{ campoRequerido(campoProducto)});
@@ -30,5 +33,22 @@ function guardarProducto(e){
 function crearProducto(){
     console.log("aqui creo el producto")
     // crear el objeto producto
+    let productoNuevo = new Producto(campoCodigo.value, campoProducto.value, campoDescripcion.value, campoCantidad.value, campoUrl.value);
+    console.log(productoNuevo);
+    // guardar el producto creado en el arreglo
+    listaProductos.push(productoNuevo);
+    console.log(listaProductos);
+    // limpiar el formulario
+    limpiarFormulario();
+}
 
+function limpiarFormulario(){
+    // limpiar los value de todo el formulario
+    formularioProducto.reset();
+    // limpiar las clases
+    campoCodigo.className = "form-control";
+    campoProducto.className = "form-control";
+    campoDescripcion.className = "form-control";
+    campoCantidad.className = "form-control";
+    campoUrl.className = "form-control";
 }
