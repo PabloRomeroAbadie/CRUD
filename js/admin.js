@@ -79,7 +79,7 @@ function crearFila(producto){
     <td>${producto.cantidad}</td>
     <td>${producto.url}</td>
     <td>
-      <button class="btn btn-danger">Editar</button>
+      <button class="btn btn-danger" onclick="prepararEdicionProducto(${producto.codigo})">Editar</button>
       <button class="btn btn-warning">Borrar</button>
     </td>
   </tr>`;
@@ -97,3 +97,17 @@ function borrarTabla(){
     let tabla = document.querySelector ("#tablaProductos");
     tabla.innerHTML="";
 }
+
+window.prepararEdicionProducto = function(codigo){
+    console.log(codigo)
+    // obtener el objeto a modificar
+    let productoBuscado = listaProductos.find((itemProducto)=>{return itemProducto.codigo == codigo})
+    console.log(productoBuscado);
+    //mostrar los datos en el form
+    campoCodigo.value = productoBuscado.codigo;
+    campoProducto.value = productoBuscado.producto;
+    campoDescripcion.value = productoBuscado.descripcion;
+    campoCantidad.value = productoBuscado.cantidad;
+    campoUrl.value = productoBuscado.url;
+}
+
