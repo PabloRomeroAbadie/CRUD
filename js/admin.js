@@ -11,6 +11,8 @@ let formularioProducto = document.querySelector("#formProducto");
 
 // lista de productos
 let listaProductos = JSON.parse(localStorage.getItem("listaProductosKey")) || []; 
+let productoExistente = false; // si productoExistente es = false quiero crear un producto, caso contrario quiero modificar
+let btnAgregar = document.querySelector("#botonNuevo")
 
 
 campoCodigo.addEventListener("blur", () =>{ campoRequerido(campoCodigo)});
@@ -19,6 +21,7 @@ campoDescripcion.addEventListener("blur", () =>{ campoRequerido(campoDescripcion
 campoCantidad.addEventListener("blur", ()=>{validarNumeros(campoCantidad)});
 campoUrl.addEventListener("blur", ()=>{validarUrl(campoUrl)});
 formularioProducto.addEventListener("submit",guardarProducto);
+btnAgregar.addEventListener("click", limpiarFormulario);
 
 // llamar a la funcion cargaInicial
 cargaInicial();
@@ -27,8 +30,13 @@ function guardarProducto(e){
     e.preventDefault()
     //validar los campos del formulario
     if(validarGeneral(campoCodigo, campoProducto,campoDescripcion,campoCantidad,campoUrl)){
-        // agregar o crear un producto
-        crearProducto();
+        if(productoExistente == false){
+            // caso 1:agregar o crear un producto
+            crearProducto();
+        }else{
+            // caso 2: el usuario quiere editar un producto
+            modificarProducto();
+        }
     }
     
 }
@@ -64,6 +72,8 @@ function limpiarFormulario(){
     campoDescripcion.className = "form-control";
     campoCantidad.className = "form-control";
     campoUrl.className = "form-control";
+    //limpiar la variable booleana
+    productoExistente=false;
 }
 
 function guardarLocalStorage(){
@@ -80,7 +90,7 @@ function crearFila(producto){
     <td>${producto.url}</td>
     <td>
       <button class="btn btn-danger" onclick="prepararEdicionProducto(${producto.codigo})">Editar</button>
-      <button class="btn btn-warning">Borrar</button>
+      <button class="btn btn-warning" onclick="borrarProducto(${producto.codigo})">Borrar</button>
     </td>
   </tr>`;
 }
@@ -109,5 +119,53 @@ window.prepararEdicionProducto = function(codigo){
     campoDescripcion.value = productoBuscado.descripcion;
     campoCantidad.value = productoBuscado.cantidad;
     campoUrl.value = productoBuscado.url;
+    // aqui modifico la variable booleana
+    productoExistente=true;
 }
 
+function modificarProducto(){
+    console.log("aqui quiero modificar este producto");
+    // buscar la posicion de mi producto dentro del arreglo
+    let posicionProducto = listaProductos.findIndex((itemProducto)=>{return itemProducto.codigo == campoCodigo.value}
+    );
+    console.log(posicionProducto);
+    // modificar los datos de ese producto dentro del arreglo
+    listaProductos[posicionProducto].producto = campoProducto.value;
+    listaProductos[posicionProducto].descripcion = campoDescripcion.value;
+    listaProductos[posicionProducto].cantidad = campoCantidad.value;
+    listaProductos[posicionProducto].url = campoUrl.value;
+    console.log(listaProductos);
+    // actualizar los datos del localstorage
+    guardarLocalStorage();
+    // mostrar un cartel de modificacion de producto
+    Swal.fire(
+        'Producto Modificado',
+        'Su producto fue correctamente editado',
+        'success'
+      )
+    // limpiar los datos del formulario
+    limpiarFormulario();
+    // actualizar la tabla
+    borrarTabla();
+    // dibujar tabla
+    listaProductos.forEach((itemProducto)=>{crearFila(itemProducto)});
+}
+
+window.borrarProducto = function(codigo){
+    console.log(codigo);
+    // borro el producto del arreglo (con splice o con el siguiente metodo)
+    let arregloProductoBorrado = listaProductos.filter((itemProducto)=>{return itemProducto.codigo != codigo})
+    console.log(arregloProductoBorrado)
+    // actualizo los datos en localstorage
+    listaProductos = arregloProductoBorrado;
+    guardarLocalStorage();
+    //actualizar los datos de la tabla (borrar y volver a dibujar)
+    borrarTabla();
+    listaProductos.forEach((itemProducto)=>{crearFila(itemProducto)});
+    // mostrar mensaje
+    Swal.fire(
+        'Producto eliminado',
+        'Su producto fue correctamente eliminado del sistema',
+        'success'
+      );
+}
